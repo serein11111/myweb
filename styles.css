@@ -1,0 +1,205 @@
+/* 全局样式 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.input-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group h2 {
+    margin-bottom: 10px;
+}
+
+.sub-input-group {
+    margin-bottom: 10px;
+}
+
+.sub-input-group label,
+.input-group label {
+    display: inline-block;
+    width: 100px;
+    margin-right: 10px;
+    font-weight: normal;
+}
+
+select,
+input,
+textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+}
+
+textarea {
+    width: 100%;
+    max-width: 400px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #FF9933;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #E68A2E;
+}
+
+/* 弹窗样式 */
+dialog {
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 800px;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#dialogTitle {
+    text-align: center;
+    color: #333;
+    font-size: 26px;
+    margin-bottom: 20px;
+    margin-top: 40px;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.star-group-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.star-group {
+    margin: 8px 0;
+}
+
+.star {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background-image: url('/myweb/star-empty.png');
+    background-size: contain;
+    margin-right: 3px;
+}
+
+.star-filled {
+    background-image: url('/myweb/star-filled.png');
+}
+
+#comment-text{
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+#evaluationTime {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.logo-container img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.logo-container span {
+    font-size: 18px;
+    color: #333;
+}
+
+.aligned-text {
+    margin: 0;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.star-row {
+    display: flex;
+    align-items: center;
+}
+
+.star-label {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.测评内容布局 {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+}
+
+.语言基本能力测评布局 {
+    width: 45%;
+}
+
+.五维能力综合测评布局 {
+    width: 45%;
+    text-align: center;
+}
+
+.关闭按钮 {
+    background-color: #FF9933;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 0;
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 新增样式，用于显示星星对应的文字 */
+.star-text {
+    color: orange;
+    font-size: 16px;
+    margin-left: 5px;
+}
