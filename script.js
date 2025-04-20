@@ -1,5 +1,7 @@
 function generateRadar() {
     const name = document.getElementById('name').value;
+    const gender = document.getElementById('gender').value;
+    const age = document.getElementById('age').value;
     const enunciation = parseInt(document.getElementById('enunciation').value);
     const rhythm = parseInt(document.getElementById('rhythm').value);
     const expression = parseInt(document.getElementById('expression').value);
@@ -12,6 +14,13 @@ function generateRadar() {
     const voice = parseFloat(document.getElementById('voice').value);
     const communication = parseFloat(document.getElementById('communication').value);
     const comment = document.getElementById('comment').value;
+
+    // 验证年龄
+    if (!age || age < 3 || age > 99) {
+        alert("请输入有效的年龄(3-99岁)");
+        document.getElementById('age').focus();
+        return;
+    }
 
     const inputIds = ['confidence', 'logic', 'creativity', 'voice', 'communication'];
     const values = [confidence, logic, creativity, voice, communication];
@@ -73,6 +82,10 @@ function generateRadar() {
     const dialogTitle = document.getElementById('dialogTitle');
     dialogTitle.textContent = `${name} 语言口才能力测评`;
 
+    // 显示基本信息
+    document.getElementById('displayGender').textContent = gender;
+    document.getElementById('displayAge').textContent = age;
+
     // 显示语言基本能力测评星星
     setStars('enunciation-stars', enunciation);
     setStars('rhythm-stars', rhythm);
@@ -104,31 +117,4 @@ function generateRadar() {
     dialog.showModal();
 }
 
-function setStars(starGroupId, starCount) {
-    const starGroup = document.getElementById(starGroupId);
-    starGroup.innerHTML = '';
-    for (let i = 1; i <= 5; i++) {
-        const star = document.createElement('span');
-        star.classList.add('star');
-        if (i <= starCount) {
-            star.classList.add('star-filled');
-        }
-        starGroup.appendChild(star);
-    }
-
-    // 根据星星数量显示对应的文字评价
-    const starTextMap = {
-        1: '继续加油',
-        2: '表现较好',
-        3: '比较优秀',
-        4: '表现很棒',
-        5: '超出预期'
-    };
-    const starTextElement = starGroup.nextElementSibling;
-    starTextElement.textContent = starTextMap[starCount];
-}
-
-function closeDialog() {
-    const dialog = document.getElementById('radarDialog');
-    dialog.close();
-}
+// 其他函数保持不变...
