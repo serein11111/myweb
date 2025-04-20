@@ -197,9 +197,16 @@ dialog::backdrop {
     margin-right: auto;
 }
 
-/* 新增样式，用于显示星星对应的文字 */
 .star-text {
     color: orange;
     font-size: 16px;
     margin-left: 5px;
+}
+
+/* 新增样式 */
+.basic-info {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #555;
 }
