@@ -1,5 +1,7 @@
 function generateRadar() {
     const name = document.getElementById('name').value;
+    const gender = document.getElementById('gender').value;
+    const age = document.getElementById('age').value;
     const enunciation = parseInt(document.getElementById('enunciation').value);
     const rhythm = parseInt(document.getElementById('rhythm').value);
     const expression = parseInt(document.getElementById('expression').value);
@@ -69,9 +71,11 @@ function generateRadar() {
 
     myChart.setOption(option);
 
-    // 设置弹窗标题
+    // 设置弹窗标题和基本信息
     const dialogTitle = document.getElementById('dialogTitle');
     dialogTitle.textContent = `${name} 语言口才能力测评`;
+    document.getElementById('displayGender').textContent = gender;
+    document.getElementById('displayAge').textContent = age;
 
     // 显示语言基本能力测评星星
     setStars('enunciation-stars', enunciation);
