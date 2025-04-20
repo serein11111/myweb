@@ -12,9 +12,22 @@
     <div class="input-container">
         <!-- 输入元素容器 -->
         <div class="input-group">
-            <!-- 姓名输入组 -->
-            <label for="name" style="font-weight: bold;">姓名</label>
-            <input type="text" id="name" placeholder="请输入姓名">
+            <!-- 基本信息输入组 -->
+            <div class="sub-input-group">
+                <label for="name" style="font-weight: bold;">姓名</label>
+                <input type="text" id="name" placeholder="请输入姓名">
+            </div>
+            <div class="sub-input-group">
+                <label for="gender" style="font-weight: bold;">性别</label>
+                <select id="gender">
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+            </div>
+            <div class="sub-input-group">
+                <label for="age" style="font-weight: bold;">年龄</label>
+                <input type="number" id="age" min="3" max="99" placeholder="请输入年龄">
+            </div>
         </div>
         <div class="input-group">
             <!-- 语言基本能力测评组 -->
@@ -118,6 +131,9 @@
         </div>
         <h2 id="dialogTitle"></h2>
         <div class="popup-content">
+            <div class="basic-info">
+                <p><span id="displayGender"></span>, <span id="displayAge"></span>岁</p>
+            </div>
             <div class="测评内容布局">
                 <div class="语言基本能力测评布局">
                     <p class="aligned-text">语言基本能力测评</p>
@@ -125,7 +141,7 @@
                         <div class="star-row">
                             <span class="star-label">吐字</span>
                             <div class="star-group" id="enunciation-stars"></div>
-                            <span class="star-text"></span> <!-- 新增的span元素，用于显示文字 -->
+                            <span class="star-text"></span>
                         </div>
                         <div class="star-row">
                             <span class="star-label">节奏</span>
