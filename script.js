@@ -1,4 +1,5 @@
 function generateRadar() {
+    // 获取输入值
     const name = document.getElementById('name').value;
     const gender = document.getElementById('gender').value;
     const age = document.getElementById('age').value;
@@ -15,16 +16,24 @@ function generateRadar() {
     const communication = parseFloat(document.getElementById('communication').value);
     const comment = document.getElementById('comment').value;
 
+    // 验证必填字段
+    if (!name) {
+        alert("请输入姓名");
+        document.getElementById('name').focus();
+        return;
+    }
+
     // 验证年龄
-    if (!age || age < 3 || age > 99) {
+    if (!age || isNaN(age) || age < 3 || age > 99) {
         alert("请输入有效的年龄(3-99岁)");
         document.getElementById('age').focus();
         return;
     }
 
+    // 验证五维能力分数
     const inputIds = ['confidence', 'logic', 'creativity', 'voice', 'communication'];
     const values = [confidence, logic, creativity, voice, communication];
-
+    
     for (let i = 0; i < values.length; i++) {
         if (isNaN(values[i]) || values[i] < 0 || values[i] > 100) {
             alert(`请输入 0 - 100 之间的有效成绩！`);
@@ -33,8 +42,15 @@ function generateRadar() {
         }
     }
 
-    const myChart = echarts.init(document.getElementById('radarChart'));
-
+    // 初始化雷达图
+    const radarChart = document.getElementById('radarChart');
+    if (!radarChart) {
+        console.error("找不到雷达图容器");
+        return;
+    }
+    
+    const myChart = echarts.init(radarChart);
+    
     const option = {
         radar: {
             indicator: [
@@ -78,15 +94,12 @@ function generateRadar() {
 
     myChart.setOption(option);
 
-    // 设置弹窗标题
-    const dialogTitle = document.getElementById('dialogTitle');
-    dialogTitle.textContent = `${name} 语言口才能力测评`;
-
-    // 显示基本信息
+    // 设置弹窗内容
+    document.getElementById('dialogTitle').textContent = `${name} 语言口才能力测评`;
     document.getElementById('displayGender').textContent = gender;
     document.getElementById('displayAge').textContent = age;
-
-    // 显示语言基本能力测评星星
+    
+    // 设置星星评级
     setStars('enunciation-stars', enunciation);
     setStars('rhythm-stars', rhythm);
     setStars('expression-stars', expression);
@@ -94,27 +107,54 @@ function generateRadar() {
     setStars('sound-stars', sound);
     setStars('impromptu-stars', impromptu);
 
-    // 显示测评老师评价寄语
-    const commentText = document.getElementById('comment-text');
-    commentText.textContent = `测评老师评价寄语：${comment}`;
-
-    // 获取当前时间并格式化
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-    const formattedTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    // 设置评语
+    document.getElementById('comment-text').textContent = `测评老师评价寄语：${comment}`;
 
     // 设置测评时间
-    const evaluationTimeElement = document.getElementById('evaluationTime');
-    evaluationTimeElement.textContent = `测评时间：${formattedTime}`;
+    const now = new Date();
+    const formattedTime = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+    document.getElementById('evaluationTime').textContent = `测评时间：${formattedTime}`;
 
-    // 打开弹窗
+    // 显示弹窗
     const dialog = document.getElementById('radarDialog');
-    dialog.showModal();
+    if (dialog) {
+        dialog.showModal();
+    } else {
+        console.error("找不到弹窗元素");
+    }
 }
 
-// 其他函数保持不变...
+function setStars(starGroupId, starCount) {
+    const starGroup = document.getElementById(starGroupId);
+    if (!starGroup) return;
+    
+    starGroup.innerHTML = '';
+    for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('span');
+        star.classList.add('star');
+        if (i <= starCount) {
+            star.classList.add('star-filled');
+        }
+        starGroup.appendChild(star);
+    }
+
+    // 设置星星对应的文字评价
+    const starTextMap = {
+        1: '继续加油',
+        2: '表现较好',
+        3: '比较优秀',
+        4: '表现很棒',
+        5: '超出预期'
+    };
+    const starTextElement = starGroup.nextElementSibling;
+    if (starTextElement && starTextElement.classList.contains('star-text')) {
+        starTextElement.textContent = starTextMap[starCount] || '';
+    }
+}
+
+function closeDialog() {
+    const dialog = document.getElementById('radarDialog');
+    if (dialog) {
+        dialog.close();
+    }
+}
