@@ -29,7 +29,100 @@
                 <input type="number" id="age" min="3" max="99" placeholder="请输入年龄">
             </div>
         </div>
-        <!-- 其余代码保持不变... -->
+        <div class="input-group">
+            <!-- 语言基本能力测评组 -->
+            <h2 style="font-weight: bold;">语言基本能力测评</h2>
+            <div class="sub-input-group">
+                <label for="enunciation" style="font-weight: bold;">吐字</label>
+                <select id="enunciation">
+                    <option value="1">一星</option>
+                    <option value="2">二星</option>
+                    <option value="3">三星</option>
+                    <option value="4">四星</option>
+                    <option value="5">五星</option>
+                </select>
+            </div>
+            <div class="sub-input-group">
+                <label for="rhythm" style="font-weight: bold;">节奏</label>
+                <select id="rhythm">
+                    <option value="1">一星</option>
+                    <option value="2">二星</option>
+                    <option value="3">三星</option>
+                    <option value="4">四星</option>
+                    <option value="5">五星</option>
+                </select>
+            </div>
+            <div class="sub-input-group">
+                <label for="expression" style="font-weight: bold;">表达</label>
+                <select id="expression">
+                    <option value="1">一星</option>
+                    <option value="2">二星</option>
+                    <option value="3">三星</option>
+                    <option value="4">四星</option>
+                    <option value="5">五星</option>
+                </select>
+            </div>
+            <div class="sub-input-group">
+                <label for="emotion" style="font-weight: bold;">情感</label>
+                <select id="emotion">
+                    <option value="1">一星</option>
+                    <option value="2">二星</option>
+                    <option value="3">三星</option>
+                    <option value="4">四星</option>
+                    <option value="5">五星</option>
+                </select>
+            </div>
+            <div class="sub-input-group">
+                <label for="sound" style="font-weight: bold;">声音</label>
+                <select id="sound">
+                    <option value="1">一星</option>
+                    <option value="2">二星</option>
+                    <option value="3">三星</option>
+                    <option value="4">四星</option>
+                    <option value="5">五星</option>
+                </select>
+            </div>
+            <div class="sub-input-group">
+                <label for="impromptu" style="font-weight: bold;">即兴</label>
+                <select id="impromptu">
+                    <option value="1">一星</option>
+                    <option value="2">二星</option>
+                    <option value="3">三星</option>
+                    <option value="4">四星</option>
+                    <option value="5">五星</option>
+                </select>
+            </div>
+        </div>
+        <div class="input-group">
+            <!-- 五维能力综合测评组 -->
+            <h2 style="font-weight: bold;">五维能力综合测评</h2>
+            <div class="sub-input-group">
+                <label for="confidence" style="font-weight: bold;">自信力</label>
+                <input type="number" id="confidence" min="0" max="100" placeholder="请输入0 - 100的分数">
+            </div>
+            <div class="sub-input-group">
+                <label for="logic" style="font-weight: bold;">逻辑力</label>
+                <input type="number" id="logic" min="0" max="100" placeholder="请输入0 - 100的分数">
+            </div>
+            <div class="sub-input-group">
+                <label for="creativity" style="font-weight: bold;">创造力</label>
+                <input type="number" id="creativity" min="0" max="100" placeholder="请输入0 - 100的分数">
+            </div>
+            <div class="sub-input-group">
+                <label for="voice" style="font-weight: bold;">语音发声</label>
+                <input type="number" id="voice" min="0" max="100" placeholder="请输入0 - 100的分数">
+            </div>
+            <div class="sub-input-group">
+                <label for="communication" style="font-weight: bold;">人际沟通力</label>
+                <input type="number" id="communication" min="0" max="100" placeholder="请输入0 - 100的分数">
+            </div>
+        </div>
+        <div class="input-group">
+            <!-- 测评老师评价寄语组 -->
+            <label for="comment" style="font-weight: bold;">测评老师评价寄语</label>
+            <textarea id="comment" placeholder="老师输入文字"></textarea>
+        </div>
+        <button onclick="generateRadar()">生成</button>
     </div>
     <dialog id="radarDialog">
         <div class="logo-container">
@@ -40,7 +133,52 @@
         <div class="basic-info">
             <span id="displayGender"></span>, <span id="displayAge"></span>岁
         </div>
-        <!-- 其余弹窗代码保持不变... -->
+        <div class="popup-content">
+            <div class="测评内容布局">
+                <div class="语言基本能力测评布局">
+                    <p class="aligned-text">语言基本能力测评</p>
+                    <div class="star-display-container">
+                        <div class="star-row">
+                            <span class="star-label">吐字</span>
+                            <div class="star-group" id="enunciation-stars"></div>
+                            <span class="star-text"></span>
+                        </div>
+                        <div class="star-row">
+                            <span class="star-label">节奏</span>
+                            <div class="star-group" id="rhythm-stars"></div>
+                            <span class="star-text"></span>
+                        </div>
+                        <div class="star-row">
+                            <span class="star-label">表达</span>
+                            <div class="star-group" id="expression-stars"></div>
+                            <span class="star-text"></span>
+                        </div>
+                        <div class="star-row">
+                            <span class="star-label">情感</span>
+                            <div class="star-group" id="emotion-stars"></div>
+                            <span class="star-text"></span>
+                        </div>
+                        <div class="star-row">
+                            <span class="star-label">声音</span>
+                            <div class="star-group" id="sound-stars"></div>
+                            <span class="star-text"></span>
+                        </div>
+                        <div class="star-row">
+                            <span class="star-label">即兴</span>
+                            <div class="star-group" id="impromptu-stars"></div>
+                            <span class="star-text"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="五维能力综合测评布局">
+                    <p class="aligned-text">五维能力综合测评图</p>
+                    <div id="radarChart" style="width: 300px; height: 250px;"></div>
+                </div>
+            </div>
+            <p id="comment-text"></p>
+            <p id="evaluationTime"></p>
+        </div>
+        <button onclick="closeDialog()" class="关闭按钮">关闭</button>
     </dialog>
     <script src="script.js"></script>
 </body>
